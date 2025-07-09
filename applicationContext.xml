@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop = "http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+	http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+<!--<bean id="e" class="com.javatpoint.Employee"></bean>
+-->
+
+<!--<bean id="e" class="com.javatpoint.Employee">
+<constructor-arg value="10" type="int"></constructor-arg>
+</bean>
+-->
+
+<!--<bean id="e" class="com.javatpoint.Employee">
+<constructor-arg value="10"></constructor-arg>
+</bean>
+-->
+<!--<bean id="e" class="com.javatpoint.Employee">
+<constructor-arg value="Sonoo"></constructor-arg>
+</bean>
+-->
+
+<!--<bean id="e" class="com.javatpoint.Employee">
+<constructor-arg value="12" type="int"></constructor-arg>
+<constructor-arg value="Sonoo"></constructor-arg>
+</bean>
+-->
+<bean id="a1" class="com.javatpoint.Address">
+	<constructor-arg value="ghaziabad"></constructor-arg>
+	<constructor-arg value="UP"></constructor-arg>
+	<constructor-arg value="India"></constructor-arg>
+</bean>
+
+<bean id="e" class="com.javatpoint.Employee">
+	<constructor-arg value="12" type="int"></constructor-arg>
+	<constructor-arg value="Sonoo"></constructor-arg>
+	<constructor-arg>
+		<ref bean="a1"/>
+	</constructor-arg>
+</bean>
+
+<!-- Scope -->
+	<bean id = "helloWorld" class = "com.javatpoint.HelloWorld" scope = "singleton">
+	</bean>
+<!-- End -->
+
+<!-- Inheritance -->
+   <bean id = "worldClass" class = "com.javatpoint.WorldClass">
+      <property name = "message1" value = "Hello World!"/>
+      <property name = "message2" value = "Hello Second World!"/>
+   </bean>
+
+   <bean id ="indiaClass" class = "com.javatpoint.IndiaClass" parent = "worldClass">
+      <property name = "message1" value = "Hello India!"/>
+      <property name = "message3" value = "Namaste India!"/>
+   </bean>
+<!-- End  -->
+
+<!-- Autowiring -->
+    <bean id="paymentGateway" class="com.javatpoint.PaymentGateway" >
+        <property name="order" ref="orderBean" />
+    </bean>
+     
+    <bean id="orderBean" class="com.javatpoint.Order" >
+        <property name="item" value="Java Book" />
+        <property name="price" value="RS 225" />
+    </bean>
+<!-- End -->
+
+
+<!-- AutoWire Byname -->
+    <bean id="employee" class="com.javatpoint.EmployeeBean" autowire="byType">
+        <property name="fullName" value="Lokesh Gupta"/>
+    </bean>
+   
+    <bean id="departmentBean" class="com.javatpoint.DepartmentBean">
+        <property name="name" value="Human Resource" />
+    </bean>
+<!-- End -->
+
+
+<!-- Definition for textEditor bean -->
+   <bean id = "textEditor" class = "com.javatpoint.TextEditor" autowire = "constructor" >
+      <constructor-arg value = "Generic Text Editor"/>
+   </bean>
+
+   <!-- Definition for spellChecker bean -->
+   <bean id = "SpellChecker" class = "com.javatpoint.SpellChecker"></bean>
+
+
+<!-- Bean Life Cycle -->
+   <bean name="personBean" class="com.javatpoint.PersonBean">
+        <property name="name" value="Jason Clarke" />
+   </bean>
+<!-- End -->
+
+
+</beans>
